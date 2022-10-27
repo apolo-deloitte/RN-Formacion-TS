@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import FabButton from '../components/FabButton';
 
 interface ContadorScreenProps {}
 
@@ -9,16 +10,18 @@ const ContadorScreen = (props: ContadorScreenProps) => {
   return (
     <View style={styles.viewStyle}>
       <Text style={styles.textStyle}>ContadorScreen {contador}</Text>
-      <TouchableOpacity
-        style={[styles.btn, styles.buttonRight]}
-        onPress={() => setContador(contador + 1)}>
-        <Text style={styles.button_text_fab}>+1</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.btn, styles.buttonLeft]}
-        onPress={() => setContador(contador - 1)}>
-        <Text style={styles.button_text_fab}>-1</Text>
-      </TouchableOpacity>
+      <FabButton
+        onPress={() => setContador(contador - 1)}
+        state={contador}
+        propStyle={styles.buttonLeft}
+        text="-1"
+      />
+      <FabButton
+        onPress={() => setContador(contador + 1)}
+        state={contador}
+        propStyle={styles.buttonRight}
+        text="+1"
+      />
     </View>
   );
 };
@@ -35,15 +38,6 @@ const styles = StyleSheet.create({
     color: 'black',
     textAlign: 'center',
   },
-  btn: {
-    alignItems: 'center',
-    backgroundColor: '#5856D6',
-    justifyContent: 'center',
-    padding: 2,
-    borderRadius: 100,
-    width: 60,
-    height: 60,
-  },
   buttonRight: {
     bottom: 25,
     right: 25,
@@ -53,10 +47,5 @@ const styles = StyleSheet.create({
     bottom: 25,
     left: 25,
     position: 'absolute',
-  },
-  button_text_fab: {
-    alignSelf: 'center',
-    fontSize: 20,
-    color: 'white',
   },
 });
