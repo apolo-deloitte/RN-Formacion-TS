@@ -1,7 +1,14 @@
 import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 import React from 'react';
 
-const FabButton = ({onPress, propStyle, state, text}) => {
+interface FabProps {
+  onPress: () => void;
+  propStyle: object;
+  state: number;
+  text: string;
+}
+
+const FabButton = ({onPress, propStyle, state, text}: FabProps) => {
   return (
     <TouchableOpacity style={[styles.btn, propStyle]} onPress={onPress}>
       <Text style={styles.button_text_fab}>{text}</Text>
