@@ -1,9 +1,9 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import HolaMundoScreen from './src/screens/HolaMundoScreen';
-import ContadorScreen from './src/screens/ContadorScreen';
+import MainStackNavigation from './src/navigation/MainStackNavigation';
 
 const App = () => {
-  return <ContadorScreen />;
+  return <MainStackNavigation></MainStackNavigation>;
 };
 
 export default App;

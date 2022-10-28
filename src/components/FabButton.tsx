@@ -4,11 +4,10 @@ import React from 'react';
 interface FabProps {
   onPress: () => void;
   propStyle: object;
-  state: number;
   text: string;
 }
 
-const FabButton = ({onPress, propStyle, state, text}: FabProps) => {
+const FabButton = ({onPress, propStyle, text}: FabProps) => {
   return (
     <TouchableOpacity style={[styles.btn, propStyle]} onPress={onPress}>
       <Text style={styles.button_text_fab}>{text}</Text>
