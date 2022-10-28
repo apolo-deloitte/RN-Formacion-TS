@@ -11,7 +11,7 @@ const ContadorScreen = ({navigation}: ContadorScreenProps) => {
     <View style={styles.viewStyle}>
       <Text style={styles.textStyle}>ContadorScreen {contador}</Text>
       <FabButton
-        onPress={() => navigation.navigate('Screen2')}
+        onPress={() => navigation.navigate('Screen 2')}
         propStyle={styles.buttonGoScreen2}
         text="Go Screen 2"
       />

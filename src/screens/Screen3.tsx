@@ -1,33 +1,32 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import React, {useState} from 'react';
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import React from 'react';
+import {Text, View, StyleSheet} from 'react-native';
 import FabButton from '../components/FabButton';
 
-interface Screen2Props extends NativeStackScreenProps<any, any> {}
+interface Screen3Props {}
 
-const Screen2 = (props: Screen2Props) => {
-  const [contador, setContador] = useState(0);
-  const {navigation} = props;
+const Screen3 = () => {
+  const navigator = useNavigation();
   return (
     <View style={styles.viewStyle}>
-      <Text style={styles.textStyle}>Screen2</Text>
+      <Text style={styles.textStyle}>Screen3</Text>
       <View style={styles.viewButtonsNavigate}>
         <FabButton
-          onPress={() => navigation.goBack()}
+          onPress={() => navigator.goBack()}
           propStyle={styles.buttonGoBack}
           text="Go Back"
         />
         <FabButton
-          onPress={() => navigation.navigate('Screen 3')}
+          onPress={() => navigator.navigate('Home')}
           propStyle={styles.buttonGoBack}
-          text="Go Screen 3"
+          text="Go Home"
         />
       </View>
     </View>
   );
 };
 
-export default Screen2;
+export default Screen3;
 
 const styles = StyleSheet.create({
   viewStyle: {
