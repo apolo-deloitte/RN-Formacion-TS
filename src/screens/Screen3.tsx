@@ -17,7 +17,7 @@ const Screen3 = () => {
           text="Go Back"
         />
         <FabButton
-          onPress={() => navigator.navigate('Home')}
+          onPress={() => navigator.popToTop()}
           propStyle={styles.buttonGoBack}
           text="Go Home"
         />
