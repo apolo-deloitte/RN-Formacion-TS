@@ -7,11 +7,12 @@ interface ContadorScreenProps extends NativeStackScreenProps<any, any> {}
 
 const ContadorScreen = ({navigation}: ContadorScreenProps) => {
   const [contador, setContador] = useState(0);
+
   return (
     <View style={styles.viewStyle}>
       <Text style={styles.textStyle}>ContadorScreen {contador}</Text>
       <FabButton
-        onPress={() => navigation.navigate('Screen 2')}
+        onPress={() => navigation.navigate('Screen 2', {})}
         propStyle={styles.buttonGoScreen2}
         text="Go Screen 2"
       />
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     fontSize: 35,
-    color: 'black',
+    color: 'white',
     textAlign: 'center',
   },
   buttonRight: {

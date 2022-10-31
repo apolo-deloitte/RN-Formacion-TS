@@ -1,15 +1,25 @@
 import {useNavigation} from '@react-navigation/native';
+import {StackScreenProps} from '@react-navigation/stack';
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import FabButton from '../components/FabButton';
 
 interface Screen3Props {}
-
-const Screen3 = () => {
+interface Props extends StackScreenProps<any, any> {}
+const Screen3 = ({route}: StackScreenProps) => {
   const navigator = useNavigation();
+  const params = route.params;
+  console.log('PARAMS: ', params);
   return (
     <View style={styles.viewStyle}>
-      <Text style={styles.textStyle}>Screen3</Text>
+      <Text style={styles.textStyle}>{params.name}</Text>
+      <View style={styles.textStyle}>
+        <Text style={styles.textDetailStyle}>HP: {params.hp}</Text>
+        <Text style={styles.textDetailStyle}>Spice: {params.spice}</Text>
+        <Text style={styles.textDetailStyle}>Type: {params.type}</Text>
+        <Text style={styles.textDetailStyle}>Attack: {params.attack}</Text>
+        <Text style={styles.textDetailStyle}>Defense: {params.defense}</Text>
+      </View>
       <View style={styles.viewButtonsNavigate}>
         <FabButton
           onPress={() => navigator.goBack()}
@@ -37,6 +47,13 @@ const styles = StyleSheet.create({
     fontSize: 35,
     color: 'black',
     textAlign: 'center',
+    textTransform: 'capitalize',
+  },
+  textDetailStyle: {
+    fontSize: 35,
+    color: 'black',
+    justifyContent: 'center',
+    textTransform: 'capitalize',
   },
   buttonGoBack: {
     justifyContent: 'center',

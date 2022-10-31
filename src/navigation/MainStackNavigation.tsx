@@ -11,9 +11,27 @@ const MainStackNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={ContadorScreen} />
-        <Stack.Screen name="Screen 2" component={Screen2} />
-        <Stack.Screen name="Screen 3" component={Screen3} />
+        <Stack.Group
+          screenOptions={{
+            headerStyle: {backgroundColor: 'papayawhip'},
+            contentStyle: {
+              backgroundColor: 'black',
+            },
+          }}>
+          <Stack.Screen name="Home" component={ContadorScreen} />
+        </Stack.Group>
+        <Stack.Group
+          screenOptions={{
+            headerStyle: {backgroundColor: 'black'},
+            headerTitleStyle: {color: 'white'},
+            headerTintColor: 'white',
+            contentStyle: {
+              backgroundColor: 'papayawhip',
+            },
+          }}>
+          <Stack.Screen name="Screen 2" component={Screen2} />
+          <Stack.Screen name="Screen 3" component={Screen3} />
+        </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>
   );
