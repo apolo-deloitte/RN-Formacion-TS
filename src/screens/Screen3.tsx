@@ -3,9 +3,9 @@ import {StackScreenProps} from '@react-navigation/stack';
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import FabButton from '../components/FabButton';
+import {RootStackParams} from '../navigation/MainStackNavigation';
 
-interface Screen3Props {}
-interface Props extends StackScreenProps<any, any> {}
+interface Props extends StackScreenProps<RootStackParams, 'Screen3'> {}
 const Screen3 = ({route}: StackScreenProps) => {
   const navigator = useNavigation();
   const params = route.params;

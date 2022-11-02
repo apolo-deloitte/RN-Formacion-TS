@@ -3,7 +3,7 @@ import React from 'react';
 
 interface FabProps {
   onPress: () => void;
-  propStyle: object;
+  propStyle?: object;
   text: string;
 }
 

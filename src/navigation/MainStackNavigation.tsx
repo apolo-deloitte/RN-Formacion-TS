@@ -1,11 +1,23 @@
 import {Text, StyleSheet, View} from 'react-native';
-import React, {Component} from 'react';
+import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ContadorScreen from '../screens/ContadorScreen';
 import Screen2 from '../screens/Screen2';
 import Screen3 from '../screens/Screen3';
+import {Pokemon} from '../model/PokemonModel';
+import SettingScreen from '../screens/SettingScreen';
 
+//El siguiente tipado nos obligara a mantener la estructura que definamos
+//en todos los Stack.Screen que definamos mas tarde.
+//Si queremos añadir una Screen nueva tendremos que recordar añadirlo
+//en este objeto también.
+export type RootStackParams = {
+  ContadorScreen: undefined;
+  Screen2: undefined;
+  Screen3: Pokemon;
+  SettingScreen: undefined;
+};
 const Stack = createNativeStackNavigator();
 const MainStackNavigation = () => {
   return (
@@ -31,6 +43,7 @@ const MainStackNavigation = () => {
           }}>
           <Stack.Screen name="Screen 2" component={Screen2} />
           <Stack.Screen name="Screen 3" component={Screen3} />
+          <Stack.Screen name="SettingScreen" component={SettingScreen} />
         </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>

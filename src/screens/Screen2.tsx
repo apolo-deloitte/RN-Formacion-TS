@@ -3,27 +3,17 @@ import React, {useState, useEffect} from 'react';
 import {Text, View, StyleSheet, TextInput, Image} from 'react-native';
 import FabButton from '../components/FabButton';
 import axios from 'axios';
+import {Pokemon} from '../model/PokemonModel';
 
 interface Screen2Props extends NativeStackScreenProps<any, any> {}
-interface Pokemon {
-  name: string;
-  img: string;
-  hp: string;
-  attack: string;
-  defense: string;
-  type: string;
-}
-
 const Screen2 = (props: Screen2Props) => {
   const {navigation} = props;
 
   const [pokemonName, setPokemonName] = useState('pikachu');
-  const [pokemonChosen, setPokemonChosen] = useState(false);
+  /* const [pokemonChosen, setPokemonChosen] = useState(false); */
   const [pokemon, setPokemon] = useState<Pokemon>();
   //Call POKEAPI request
   const handleSearchPokemon = () => {
-    var data = null;
-    console.log('POKEMON NAME: ', pokemonName);
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
       .then(response => {
