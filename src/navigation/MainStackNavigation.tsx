@@ -31,7 +31,7 @@ const MainStackNavigation = () => {
       }}>
       <Stack.Group
         screenOptions={{
-          headerStyle: {backgroundColor: 'papayawhip'},
+          headerShown: false,
           contentStyle: {
             backgroundColor: 'black',
           },

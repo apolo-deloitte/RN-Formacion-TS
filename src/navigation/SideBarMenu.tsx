@@ -12,17 +12,27 @@ import Screen2 from '../screens/Screen2';
 import MainStackNavigation from './MainStackNavigation';
 import SettingScreen from '../screens/SettingScreen';
 import useWindowDimensions from 'react-native/Libraries/Utilities/useWindowDimensions';
-
+import Tabs from '../navigation/Tabs';
+import Screen3 from '../screens/Screen3';
 const Drawer = createDrawerNavigator();
 
 const SideBarMenu = () => {
   const {width} = useWindowDimensions();
   return (
+    /* LOS NAVIGATOR son los controladores de las navegaciones por pantallas
+    toda pantalla que no esté accesible por un flujo de un Navigator no será accesible */
     <Drawer.Navigator drawerContent={props => <MenuPersonalize {...props} />}>
       <Drawer.Screen
-        name="MainStackNavigation"
-        options={{title: 'Home'}}
-        component={MainStackNavigation}
+        name="Tabs"
+        options={{
+          title: 'Home',
+          headerStyle: styles.headerStyles,
+          headerTintColor: '#F5F8FA', //colores como los de ibercaja para ir haciendo app parecida
+        }}
+        component={Tabs}
+        /* En este punto le estamos indicando que nos renderice
+        los tabs que servirian de un nuevo Stack pero con tabs inferiores
+        de navegacion. */
       />
       <Drawer.Screen
         name="Screen2"
@@ -33,6 +43,11 @@ const SideBarMenu = () => {
         name="SettingScreen"
         options={{title: 'SettingScreen'}}
         component={SettingScreen}
+      />
+      <Drawer.Screen
+        name="Screen 3"
+        options={{title: 'Screen 3'}}
+        component={Screen3}
       />
     </Drawer.Navigator>
   );
@@ -52,10 +67,15 @@ const MenuPersonalize = ({
         />
       </View>
       <View style={styles.menuButton}>
-        <Text
+        {/* <Text
           style={styles.textButton}
           onPress={() => navigation.navigate('MainStackNavigation')}>
           MainStackNavigation
+        </Text> */}
+        <Text
+          style={styles.textButton}
+          onPress={() => navigation.navigate('Tabs')}>
+          Tabs
         </Text>
         <Text
           style={styles.textButton}
@@ -67,11 +87,23 @@ const MenuPersonalize = ({
           onPress={() => navigation.navigate('SettingScreen')}>
           Setting Screen
         </Text>
+        {/* 
+        Podemos hacer que aparezca en el menu Drawer pero
+        si no tenemos datos para pasarle, los cuales ACTUALMENTE
+        se lo pasamos desde Screen 2 no se renderizá el Screen 3
+        <Text
+          style={styles.textButton}
+          onPress={() => navigation.navigate('Screen 3')}>
+          Screen 3
+        </Text> */}
       </View>
     </DrawerContentScrollView>
   );
 };
 const styles = StyleSheet.create({
+  headerStyles: {
+    backgroundColor: '#0B7AD0',
+  },
   avatar: {
     width: 70,
     height: 70,
