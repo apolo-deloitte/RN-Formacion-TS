@@ -1,35 +1,39 @@
+import React from 'react';
 import {
   createDrawerNavigator,
   DrawerContentComponentProps,
   DrawerContentScrollView,
   DrawerContentOptions,
 } from '@react-navigation/drawer';
-import React from 'react';
-import {View, Image} from 'react-native';
+
+import {View, Image, StyleSheet, Text} from 'react-native';
 /* import ContadorScreen from '../screens/ContadorScreen'; */
 import Screen2 from '../screens/Screen2';
 import MainStackNavigation from './MainStackNavigation';
-import useravatar from '../assets/images/avatar-placeholder.png';
-import FabButton from '../components/FabButton';
 import SettingScreen from '../screens/SettingScreen';
+import useWindowDimensions from 'react-native/Libraries/Utilities/useWindowDimensions';
 
 const Drawer = createDrawerNavigator();
 
 const SideBarMenu = () => {
-  /* 
-    RECORDAR HACERLO CUANDO PODAMOS ARRANCAR APP
-    <Drawer.Navigator drawerType={ width>= 768 ? 'permanent' : 'front' }
-    drawerContent={(props) => <MenuPersonalize {...props}/>}
-    >
-    */
+  const {width} = useWindowDimensions();
   return (
-    <Drawer.Navigator
-      drawerType={width >= 768 ? 'permanent' : 'front'}
-      drawerContent={props => <MenuPersonalize {...props} />}>
-      <Drawer.Screen name="Home" component={MainStackNavigation} />
-      <Drawer.Screen name="Screen 2" component={Screen2} />
-      {/* SettingScreen */}
-      <Drawer.Screen name="SettingScreen " component={SettingScreen} />
+    <Drawer.Navigator drawerContent={props => <MenuPersonalize {...props} />}>
+      <Drawer.Screen
+        name="MainStackNavigation"
+        options={{title: 'Home'}}
+        component={MainStackNavigation}
+      />
+      <Drawer.Screen
+        name="Screen2"
+        options={{title: 'Screen2'}}
+        component={Screen2}
+      />
+      <Drawer.Screen
+        name="SettingScreen"
+        options={{title: 'SettingScreen'}}
+        component={SettingScreen}
+      />
     </Drawer.Navigator>
   );
 };
@@ -41,44 +45,50 @@ const MenuPersonalize = ({
 }: DrawerContentComponentProps<DrawerContentOptions>) => {
   return (
     <DrawerContentScrollView>
-      <View>
+      <View style={styles.avatarContainer}>
         <Image
-          source={{
-            uri: useravatar,
-          }}
+          source={require('../assets/images/avatar-placeholder.png')}
           style={styles.avatar}
         />
       </View>
-      <View style={styles.menuContainer}>
-        <FabButton
-          propStyle={styles.menuBotton}
-          text="Menu 1"
-          onPress={() =>
-            navigation.navigate('MainStackNavigation')
-          }></FabButton>
-        <FabButton
-          propStyle={styles.menuBotton}
-          text="Menu 2"
-          onPress={() => navigation.navigate('Screen2')}></FabButton>
-        <FabButton
-          propStyle={styles.menuBotton}
-          text="Menu 2"
-          onPress={() => navigation.navigate('Setting Screen')}></FabButton>
+      <View style={styles.menuButton}>
+        <Text
+          style={styles.textButton}
+          onPress={() => navigation.navigate('MainStackNavigation')}>
+          MainStackNavigation
+        </Text>
+        <Text
+          style={styles.textButton}
+          onPress={() => navigation.navigate('Screen2')}>
+          Screen2
+        </Text>
+        <Text
+          style={styles.textButton}
+          onPress={() => navigation.navigate('SettingScreen')}>
+          Setting Screen
+        </Text>
       </View>
     </DrawerContentScrollView>
   );
 };
 const styles = StyleSheet.create({
   avatar: {
-    width: 110,
-    height: 110,
+    width: 70,
+    height: 70,
+    borderRadius: 100,
   },
-  menuContainer: {
-    marginVertical: 30,
-    marginHorizontal: 50,
+  avatarContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  menuBotton: {
+  menuButton: {
+    alignItems: 'flex-start',
+  },
+  textButton: {
+    color: '#25B8EB',
+    fontWeight: '400',
     marginVertical: 10,
+    marginHorizontal: 10,
     fontSize: 20,
   },
 });

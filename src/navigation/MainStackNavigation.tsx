@@ -13,6 +13,7 @@ import SettingScreen from '../screens/SettingScreen';
 //Si queremos añadir una Screen nueva tendremos que recordar añadirlo
 //en este objeto también.
 export type RootStackParams = {
+  MainStackNavigation: undefined;
   ContadorScreen: undefined;
   Screen2: undefined;
   Screen3: Pokemon;
@@ -21,32 +22,44 @@ export type RootStackParams = {
 const Stack = createNativeStackNavigator();
 const MainStackNavigation = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Group
-          screenOptions={{
-            headerStyle: {backgroundColor: 'papayawhip'},
-            contentStyle: {
-              backgroundColor: 'black',
-            },
-          }}>
-          <Stack.Screen name="Home" component={ContadorScreen} />
-        </Stack.Group>
-        <Stack.Group
-          screenOptions={{
-            headerStyle: {backgroundColor: 'black'},
-            headerTitleStyle: {color: 'white'},
-            headerTintColor: 'white',
-            contentStyle: {
-              backgroundColor: 'papayawhip',
-            },
-          }}>
-          <Stack.Screen name="Screen 2" component={Screen2} />
-          <Stack.Screen name="Screen 3" component={Screen3} />
-          <Stack.Screen name="SettingScreen" component={SettingScreen} />
-        </Stack.Group>
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          elevation: 0,
+          shadowColor: 'transparent',
+        },
+      }}>
+      <Stack.Group
+        screenOptions={{
+          headerStyle: {backgroundColor: 'papayawhip'},
+          contentStyle: {
+            backgroundColor: 'black',
+          },
+        }}>
+        <Stack.Screen name="Home 2" component={ContadorScreen} />
+      </Stack.Group>
+      <Stack.Group
+        screenOptions={{
+          headerStyle: {backgroundColor: 'black'},
+          headerTitleStyle: {color: 'white'},
+          headerTintColor: 'white',
+          contentStyle: {
+            backgroundColor: 'papayawhip',
+          },
+        }}>
+        <Stack.Screen
+          options={{title: 'Screen 2'}}
+          name="Screen 2"
+          component={Screen2}
+        />
+        <Stack.Screen
+          options={{title: 'Screen 3'}}
+          name="Screen 3"
+          component={Screen3}
+        />
+        <Stack.Screen name="SettingScreen" component={SettingScreen} />
+      </Stack.Group>
+    </Stack.Navigator>
   );
 };
 export default MainStackNavigation;

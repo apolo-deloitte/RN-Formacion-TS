@@ -1,9 +1,12 @@
+import {DrawerScreenProps} from '@react-navigation/drawer';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useState} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import FabButton from '../components/FabButton';
 
-interface ContadorScreenProps extends NativeStackScreenProps<any, any> {}
+/* interface ContadorScreenProps extends NativeStackScreenProps<any, any> {} */
+
+interface ContadorScreenProps extends DrawerScreenProps<any, any> {}
 
 const ContadorScreen = ({navigation}: ContadorScreenProps) => {
   const [contador, setContador] = useState(0);
