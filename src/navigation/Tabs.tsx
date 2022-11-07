@@ -9,7 +9,7 @@ import MainStackNavigation from './MainStackNavigation';
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
-  const selectIconTabBar = (color, name) => {
+  const selectIconTabBar = (color: string, name: string) => {
     let iconName: string = '';
     switch (name) {
       case 'Tab 1':
